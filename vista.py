@@ -84,6 +84,12 @@ def reproductor(canvas):
     capsula(canvas, x - border + 1.58, y - border, width + border, height + (border * 2), '#DFD0B8')  
     capsula(canvas, x, y, width + 1.58, height, '#948979')
 
+    #botones y vinilo
+    capsula(canvas, CANVAS_WIDTH / 2 - (height / 2), y + (height / 4), x / 2, height / 2, 'cornsilk2') #boton 'play'
+    canvas.create_text((CANVAS_WIDTH / 2) + 0.5, y + (height / 2.05), text= 'PLAY', font= ('Inter', 8, 'bold'), fill=BG_COLOR) #boton 'play' - texto
+    canvas.create_oval(x + 10, y + 6, x + 44, y + 38, fill='black') #vinilo - border
+    canvas.create_oval(x + 23, y + 18, x + 31, y + 26, fill='red') #vinilo - la parte roja
+
 """ FIN DEL CODIGO """
 
 if __name__ == '__main__':
