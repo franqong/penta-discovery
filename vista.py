@@ -46,6 +46,14 @@ def busqueda(canvas):
     capsula(canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') 
     capsula(canvas, x, y, width + 1.58, height, '#DFD0B8')
 
+    #linea temporal para marcar el lugar donde se hara el input de la busqueda
+    x1 = x + 25
+    y1 = (height * 3) + 15
+    x2 = (width * 2) - 25
+    y2 = (height * 3) + 15
+    canvas.create_line(x1, y2, x2, y2, fill='#948979')
+
+
 def letras(canvas):
     x = CANVAS_WIDTH / 14
     y = CANVAS_HEIGHT / 4
