@@ -20,14 +20,20 @@ def main():
 
     root.mainloop() #loop para que la ventana no se cierre
 
+def capsula(canvas, x, y, width, height, color):
+    radio = height / 2
+    canvas.create_rectangle(x, y, x + width, y + height, fill=color, outline='') #rectangulo principal
+    canvas.create_oval(x - radio, y, x + radio, y + height - 1, fill=color, outline='') #circulo izquierdo
+    canvas.create_oval(x + width - radio, y, x + width + radio, y + height - 1, fill=color, outline='') #circulo derecho
+
 def busqueda(canvas):
     x = CANVAS_WIDTH / 3
     y = CANVAS_HEIGHT / 7
-    x_top = x + (CANVAS_WIDTH - (x * 2))
-    y_bottom = y + (CANVAS_HEIGHT / 18)
-    canvas.create_rectangle(x, y, x_top, y_bottom, fill='#DFD0B8', outline='') #fill en lugar de color (a diferencia del IDE de Code in Place)
-    canvas.create_oval(CANVAS_WIDTH / 3.14, y, (CANVAS_WIDTH / 3.14) + (CANVAS_WIDTH / 30), y + (CANVAS_HEIGHT / 18.2), fill='#DFD0B8', outline='')
-    canvas.create_oval(CANVAS_WIDTH / 1.54, y, (CANVAS_WIDTH / 1.54) + (CANVAS_WIDTH / 30), y + (CANVAS_HEIGHT / 18.2), fill='#DFD0B8', outline='')
+    width = CANVAS_WIDTH / 3
+    height = CANVAS_HEIGHT / 18
+    border = 2
+    capsula(canvas, x - border + 1, y - border, width + border, height + (border * 2), '#948979')
+    capsula(canvas, x, y, width, height, '#DFD0B8')
 
 def letras(canvas):
     x = CANVAS_WIDTH / 14
