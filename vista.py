@@ -46,13 +46,15 @@ def busqueda(canvas):
     capsula(canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') 
     capsula(canvas, x, y, width + 1.58, height, '#DFD0B8')
 
-    #linea temporal para marcar el lugar donde se hara el input de la busqueda
-    x1 = x + 25
-    y1 = (height * 3) + 15
-    x2 = (width * 2) - 25
-    y2 = (height * 3) + 15
-    canvas.create_line(x1, y2, x2, y2, fill='#948979')
+    #input busqueda | se crea una variable y se la inserta luego en el canvas. para la variable es necesaria la funcion Entry de tkinter
+    input_busqueda = tk.Entry(canvas, bg='#DFD0B8', fg=BG_COLOR, font=('Inter', 10), bd=0, insertbackground=BG_COLOR)
+    canvas.create_window(x + (width / 2), y + (height / 2), window=input_busqueda, width= width - 40, height = height - 10)
 
+    #linea del input | se coloca debajo del input para que se visualice, por jerarquia del canvas
+    x1 = x + 20
+    x2 = x + width - 20
+    y2 = y + height - 5
+    canvas.create_line(x1, y2, x2, y2, fill='#948979', width=1)
 
 def letras(canvas):
     x = CANVAS_WIDTH / 14
