@@ -13,6 +13,7 @@ def main():
     canvas.pack() #visibilidad del lienzo
     
     #canvas de cada seccion
+    header(canvas)
     busqueda(canvas)
     letras(canvas)
     info(canvas)
@@ -30,6 +31,11 @@ def capsula(canvas, x, y, width, height, color):
     canvas.create_oval(x + width - radio, y, x + width + radio, y + height - 1, fill=color, outline='') #circulo derecho
 
 """ BOXES """
+
+def header(canvas):
+    x = CANVAS_WIDTH / 2
+    y = CANVAS_HEIGHT / 14
+    canvas.create_text(x, y, text= 'Discovery', font= ('Allura', 30), fill='#e8d6bf')
 
 def busqueda(canvas):
     x = CANVAS_WIDTH / 3
