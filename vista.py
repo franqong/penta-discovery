@@ -15,6 +15,7 @@ def main():
     #canvas de cada seccion
     header(canvas)
     busqueda(canvas)
+    #busqueda_sugerencias(canvas)
     letras(canvas)
     info(canvas)
     sugerencias(canvas)
@@ -91,6 +92,22 @@ def reproductor(canvas):
     canvas.create_text((CANVAS_WIDTH / 2) + 0.5, y + (height / 2.05), text= 'PLAY', font= ('Inter', 8, 'bold'), fill=BG_COLOR) #boton 'play' - texto
     canvas.create_oval(x + 10, y + 6, x + 44, y + 38, fill='black') #vinilo - border
     canvas.create_oval(x + 23, y + 18, x + 31, y + 26, fill='red') #vinilo - la parte roja
+
+""" CAJAS INTERACTIVAS """
+
+def busqueda_sugerencias(canvas):
+    x = CANVAS_WIDTH / 1.38
+    y = CANVAS_HEIGHT / 6.6
+    width = CANVAS_WIDTH / 5.8
+    height = CANVAS_HEIGHT / 27
+    border = 2
+    capsula(canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') #centro - border 
+    capsula(canvas, x, y, width + 1.58, height, '#393E46') #centro - interior
+    capsula(canvas, x - border + 1.88, (y - 34) - border, width + border, height + (border * 2), '#948979') #arriba - border
+    capsula(canvas, x, y - 34, width + 1.58, height, '#393E46') #arriba - interior
+    capsula(canvas, x - border + 1.88, (y + 34) - border, width + border, height + (border * 2), '#948979') #abajo - border
+    capsula(canvas, x, y + 34, width + 1.58, height, '#393E46') #abajo - interior
+
 
 """ FIN DEL CODIGO """
 
