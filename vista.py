@@ -57,6 +57,10 @@ def busqueda(canvas):
     y2 = y + height - 5
     canvas.create_line(x1, y2, x2, y2, fill='#948979', width=1)
 
+    #boton de busqueda
+    canvas.create_oval(x2 + 10, y2 - 25, x2 + 25, y2 - 10, fill= '', outline=BG_COLOR, width=1.5)
+    canvas.create_line(x2 + 22, y2 - 13, x2 + 29, y2 - 6, fill=BG_COLOR, width=1.5)
+
 def letras(canvas):
     x = CANVAS_WIDTH / 14
     y = CANVAS_HEIGHT / 4
