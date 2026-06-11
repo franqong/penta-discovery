@@ -111,6 +111,10 @@ class DiscoveryView:
         self.canvas.create_oval(x + 10, y + 6, x + 44, y + 38, fill='black') #vinilo - border
         self.canvas.create_oval(x + 23, y + 18, x + 31, y + 26, fill='red') #vinilo - la parte roja
 
+    def on_search_click(self, event=None):
+        query = self.input_busqueda.get().strip()
+        print(f"Búsqueda solicitada: {query}")
+
 """ MAIN """
 
 def main():
