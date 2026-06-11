@@ -15,109 +15,108 @@ def capsula(canvas, x, y, width, height, color):
 
 """ CLASES """
 
-"""class DiscoveryView:
+class DiscoveryView:
     def __init__(self, root):
         self.root = root
         self.root.title("Discovery")
-        self.root.resizable(False, False) #temporal. la idea es quitarlo a futuro para que sea mas dinamico"""
+        self.root.resizable(False, False) #temporal. la idea es quitarlo a futuro para que sea mas dinamico
 
-def header(canvas):
-    x = CANVAS_WIDTH / 2
-    y = CANVAS_HEIGHT / 14
-    canvas.create_text(x, y, text= 'Discovery', font= ('Allura', 30), fill='#e8d6bf')
+        #canvas principal definido
+        self.canvas = tk.Canvas(root, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg=BG_COLOR, highlightthickness=0)
+        self.canvas.pack()
 
-def busqueda(canvas):
-    x = CANVAS_WIDTH / 3
-    y = CANVAS_HEIGHT / 7
-    width = CANVAS_WIDTH / 3
-    height = CANVAS_HEIGHT / 18
-    border = 2
-    capsula(canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') 
-    capsula(canvas, x, y, width + 1.58, height, '#DFD0B8')
+        #dibujar los componentes aca a partir de ahora - renombradas las secciones para mejor legibilidad
+        self.draw_header()
+        self.draw_busqueda()
+        self.draw_busqueda_sugerencias()
+        self.draw_letras()
+        self.draw_info()
+        self.draw_sugerencias()
+        self.draw_reproductor()
 
-    #input busqueda | se crea una variable y se la inserta luego en el canvas. para la variable es necesaria la funcion Entry de tkinter
-    input_busqueda = tk.Entry(canvas, bg='#DFD0B8', fg=BG_COLOR, font=('Inter', 10), bd=0, insertbackground=BG_COLOR)
-    canvas.create_window(x + (width / 2), y + (height / 2), window=input_busqueda, width= width - 40, height = height - 10)
+    def draw_header(self):
+        x = CANVAS_WIDTH / 2
+        y = CANVAS_HEIGHT / 14
+        self.canvas.create_text(x, y, text= 'Discovery', font= ('Allura', 30), fill='#e8d6bf')
 
-    #linea del input | se coloca debajo del input para que se visualice, por jerarquia del canvas
-    x1 = x + 20
-    x2 = x + width - 20
-    y2 = y + height - 5
-    canvas.create_line(x1, y2, x2, y2, fill='#948979', width=1)
+    def draw_busqueda(self):
+        x = CANVAS_WIDTH / 3
+        y = CANVAS_HEIGHT / 7
+        width = CANVAS_WIDTH / 3
+        height = CANVAS_HEIGHT / 18
+        border = 2
+        capsula(self.canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') 
+        capsula(self.canvas, x, y, width + 1.58, height, '#DFD0B8')
 
-    #boton de busqueda
-    canvas.create_oval(x2 + 10, y2 - 25, x2 + 25, y2 - 10, fill= '', outline=BG_COLOR, width=1.5)
-    canvas.create_line(x2 + 22, y2 - 13, x2 + 29, y2 - 6, fill=BG_COLOR, width=1.5)
+        #input busqueda | se crea una variable y se la inserta luego en el canvas. para la variable es necesaria la funcion Entry de tkinter
+        input_busqueda = tk.Entry(self.canvas, bg='#DFD0B8', fg=BG_COLOR, font=('Inter', 10), bd=0, insertbackground=BG_COLOR)
+        self.canvas.create_window(x + (width / 2), y + (height / 2), window=input_busqueda, width= width - 40, height = height - 10)
 
-def letras(canvas):
-    x = CANVAS_WIDTH / 14
-    y = CANVAS_HEIGHT / 4
-    x_top = x + ((CANVAS_WIDTH / 2) - x)
-    y_bottom = y + (CANVAS_HEIGHT / 2)
-    canvas.create_rectangle(x, y, x_top, y_bottom, fill='#393E46', outline=BG_COLOR, width=BOXES_WIDTH)
+        #linea del input | se coloca debajo del input para que se visualice, por jerarquia del canvas
+        x1 = x + 20
+        x2 = x + width - 20
+        y2 = y + height - 5
+        self.canvas.create_line(x1, y2, x2, y2, fill='#948979', width=1)
 
-def info(canvas):
-    x = CANVAS_WIDTH / 2
-    y = CANVAS_HEIGHT / 4
-    x_top = x + ((CANVAS_WIDTH / 2) - (CANVAS_WIDTH / 14))
-    y_bottom = y + (CANVAS_HEIGHT / 2)
-    canvas.create_rectangle(x, y, x_top, y_bottom, fill='#393E46', outline=BG_COLOR, width=BOXES_WIDTH)
+        #boton de busqueda
+        self.canvas.create_oval(x2 + 10, y2 - 25, x2 + 25, y2 - 10, fill= '', outline=BG_COLOR, width=1.5)
+        self.canvas.create_line(x2 + 22, y2 - 13, x2 + 29, y2 - 6, fill=BG_COLOR, width=1.5)
 
-def sugerencias(canvas):
-    x = CANVAS_WIDTH / 2
-    y = CANVAS_HEIGHT / 2
-    x_top = x + ((CANVAS_WIDTH / 2) - (CANVAS_WIDTH / 14))
-    y_bottom = y + (CANVAS_HEIGHT / 4)
-    canvas.create_rectangle(x, y, x_top, y_bottom, fill='#393E46', outline=BG_COLOR, width=BOXES_WIDTH)
+    def draw_busqueda_sugerencias(self):
+        x = CANVAS_WIDTH / 1.38
+        y = CANVAS_HEIGHT / 6.6
+        width = CANVAS_WIDTH / 5.8
+        height = CANVAS_HEIGHT / 27
+        border = 2
+        capsula(self.canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') #centro - border 
+        capsula(self.canvas, x, y, width + 1.58, height, '#393E46') #centro - interior
+        capsula(self.canvas, x - border + 1.88, (y - 34) - border, width + border, height + (border * 2), '#948979') #arriba - border
+        capsula(self.canvas, x, y - 34, width + 1.58, height, '#393E46') #arriba - interior
+        capsula(self.canvas, x - border + 1.88, (y + 34) - border, width + border, height + (border * 2), '#948979') #abajo - border
+        capsula(self.canvas, x, y + 34, width + 1.58, height, '#393E46') #abajo - interior
 
-def reproductor(canvas):
-    x = CANVAS_WIDTH / 14
-    y = CANVAS_HEIGHT - (CANVAS_HEIGHT / 6)
-    width = CANVAS_WIDTH - (x * 2)
-    height = CANVAS_HEIGHT / 16
-    border = 2
-    capsula(canvas, x - border + 1.58, y - border, width + border, height + (border * 2), '#DFD0B8')  
-    capsula(canvas, x, y, width + 1.58, height, '#948979')
+    def draw_letras(self):
+        x = CANVAS_WIDTH / 14
+        y = CANVAS_HEIGHT / 4
+        x_top = x + ((CANVAS_WIDTH / 2) - x)
+        y_bottom = y + (CANVAS_HEIGHT / 2)
+        self.canvas.create_rectangle(x, y, x_top, y_bottom, fill='#393E46', outline=BG_COLOR, width=BOXES_WIDTH)
 
-    #botones y vinilo
-    capsula(canvas, CANVAS_WIDTH / 2 - (height / 2), y + (height / 4), x / 2, height / 2, 'cornsilk2') #boton 'play'
-    canvas.create_text((CANVAS_WIDTH / 2) + 0.5, y + (height / 2.05), text= 'PLAY', font= ('Inter', 8, 'bold'), fill=BG_COLOR) #boton 'play' - texto
-    canvas.create_oval(x + 10, y + 6, x + 44, y + 38, fill='black') #vinilo - border
-    canvas.create_oval(x + 23, y + 18, x + 31, y + 26, fill='red') #vinilo - la parte roja
+    def draw_info(self):
+        x = CANVAS_WIDTH / 2
+        y = CANVAS_HEIGHT / 4
+        x_top = x + ((CANVAS_WIDTH / 2) - (CANVAS_WIDTH / 14))
+        y_bottom = y + (CANVAS_HEIGHT / 2)
+        self.canvas.create_rectangle(x, y, x_top, y_bottom, fill='#393E46', outline=BG_COLOR, width=BOXES_WIDTH)
 
-""" CAJAS INTERACTIVAS """
+    def draw_sugerencias(self):
+        x = CANVAS_WIDTH / 2
+        y = CANVAS_HEIGHT / 2
+        x_top = x + ((CANVAS_WIDTH / 2) - (CANVAS_WIDTH / 14))
+        y_bottom = y + (CANVAS_HEIGHT / 4)
+        self.canvas.create_rectangle(x, y, x_top, y_bottom, fill='#393E46', outline=BG_COLOR, width=BOXES_WIDTH)
 
-def busqueda_sugerencias(canvas):
-    x = CANVAS_WIDTH / 1.38
-    y = CANVAS_HEIGHT / 6.6
-    width = CANVAS_WIDTH / 5.8
-    height = CANVAS_HEIGHT / 27
-    border = 2
-    capsula(canvas, x - border + 1.88, y - border, width + border, height + (border * 2), '#948979') #centro - border 
-    capsula(canvas, x, y, width + 1.58, height, '#393E46') #centro - interior
-    capsula(canvas, x - border + 1.88, (y - 34) - border, width + border, height + (border * 2), '#948979') #arriba - border
-    capsula(canvas, x, y - 34, width + 1.58, height, '#393E46') #arriba - interior
-    capsula(canvas, x - border + 1.88, (y + 34) - border, width + border, height + (border * 2), '#948979') #abajo - border
-    capsula(canvas, x, y + 34, width + 1.58, height, '#393E46') #abajo - interior
+    def draw_reproductor(self):
+        x = CANVAS_WIDTH / 14
+        y = CANVAS_HEIGHT - (CANVAS_HEIGHT / 6)
+        width = CANVAS_WIDTH - (x * 2)
+        height = CANVAS_HEIGHT / 16
+        border = 2
+        capsula(self.canvas, x - border + 1.58, y - border, width + border, height + (border * 2), '#DFD0B8')  
+        capsula(self.canvas, x, y, width + 1.58, height, '#948979')
+
+        #botones y vinilo
+        capsula(self.canvas, CANVAS_WIDTH / 2 - (height / 2), y + (height / 4), x / 2, height / 2, 'cornsilk2') #boton 'play'
+        self.canvas.create_text((CANVAS_WIDTH / 2) + 0.5, y + (height / 2.05), text= 'PLAY', font= ('Inter', 8, 'bold'), fill=BG_COLOR) #boton 'play' - texto
+        self.canvas.create_oval(x + 10, y + 6, x + 44, y + 38, fill='black') #vinilo - border
+        self.canvas.create_oval(x + 23, y + 18, x + 31, y + 26, fill='red') #vinilo - la parte roja
 
 """ MAIN """
 
 def main():
     root = tk.Tk() #instancia raiz
-    root.title("Discovery: Music Exploration")
+    view = DiscoveryView(root) #ahora busca el lienzo en la clase
     
-    canvas = tk.Canvas(root, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg=BG_COLOR) #argumentos nuevos de la libreria tk
-    canvas.pack() #visibilidad del lienzo
-    
-    #canvas de cada seccion
-    header(canvas)
-    busqueda(canvas)
-    #busqueda_sugerencias(canvas)
-    letras(canvas)
-    info(canvas)
-    sugerencias(canvas)
-    reproductor(canvas)
-
     root.mainloop() #loop para que la ventana no se cierre
 
 """ FIN DEL CODIGO """
