@@ -5,24 +5,6 @@ CANVAS_HEIGHT = 720
 BG_COLOR = '#222831' #color de fondo
 BOXES_WIDTH = 2
 
-def main():
-    root = tk.Tk() #instancia raiz
-    root.title("Discovery: Music Exploration")
-    
-    canvas = tk.Canvas(root, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg=BG_COLOR) #argumentos nuevos de la libreria tk
-    canvas.pack() #visibilidad del lienzo
-    
-    #canvas de cada seccion
-    header(canvas)
-    busqueda(canvas)
-    #busqueda_sugerencias(canvas)
-    letras(canvas)
-    info(canvas)
-    sugerencias(canvas)
-    reproductor(canvas)
-
-    root.mainloop() #loop para que la ventana no se cierre
-
 """ FUNCIONES """
 
 def capsula(canvas, x, y, width, height, color):
@@ -31,7 +13,13 @@ def capsula(canvas, x, y, width, height, color):
     canvas.create_oval(x - radio, y, x + radio, y + height - 1, fill=color, outline='') #circulo izquierdo
     canvas.create_oval(x + width - radio, y, x + width + radio, y + height - 1, fill=color, outline='') #circulo derecho
 
-""" BOXES """
+""" CLASES """
+
+"""class DiscoveryView:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Discovery")
+        self.root.resizable(False, False) #temporal. la idea es quitarlo a futuro para que sea mas dinamico"""
 
 def header(canvas):
     x = CANVAS_WIDTH / 2
@@ -112,6 +100,25 @@ def busqueda_sugerencias(canvas):
     capsula(canvas, x - border + 1.88, (y + 34) - border, width + border, height + (border * 2), '#948979') #abajo - border
     capsula(canvas, x, y + 34, width + 1.58, height, '#393E46') #abajo - interior
 
+""" MAIN """
+
+def main():
+    root = tk.Tk() #instancia raiz
+    root.title("Discovery: Music Exploration")
+    
+    canvas = tk.Canvas(root, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg=BG_COLOR) #argumentos nuevos de la libreria tk
+    canvas.pack() #visibilidad del lienzo
+    
+    #canvas de cada seccion
+    header(canvas)
+    busqueda(canvas)
+    #busqueda_sugerencias(canvas)
+    letras(canvas)
+    info(canvas)
+    sugerencias(canvas)
+    reproductor(canvas)
+
+    root.mainloop() #loop para que la ventana no se cierre
 
 """ FIN DEL CODIGO """
 
