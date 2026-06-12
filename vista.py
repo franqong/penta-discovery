@@ -49,8 +49,8 @@ class DiscoveryView:
         capsula(self.canvas, x, y, width + 1.58, height, '#DFD0B8')
 
         #input busqueda | se crea una variable y se la inserta luego en el canvas. para la variable es necesaria la funcion Entry de tkinter
-        input_busqueda = tk.Entry(self.canvas, bg='#DFD0B8', fg=BG_COLOR, font=('Inter', 10), bd=0, insertbackground=BG_COLOR)
-        self.canvas.create_window(x + (width / 2), y + (height / 2), window=input_busqueda, width= width - 40, height = height - 10)
+        self.input_busqueda = tk.Entry(self.canvas, bg='#DFD0B8', fg=BG_COLOR, font=('Inter', 10), bd=0, insertbackground=BG_COLOR)
+        self.canvas.create_window(x + (width / 2), y + (height / 2), window=self.input_busqueda, width= width - 40, height = height - 10)
 
         #linea del input | se coloca debajo del input para que se visualice, por jerarquia del canvas
         x1 = x + 20
@@ -61,6 +61,13 @@ class DiscoveryView:
         #boton de busqueda
         self.canvas.create_oval(x2 + 10, y2 - 25, x2 + 25, y2 - 10, fill= '', outline=BG_COLOR, width=1.5)
         self.canvas.create_line(x2 + 22, y2 - 13, x2 + 29, y2 - 6, fill=BG_COLOR, width=1.5)
+
+        #boton de busqueda - area invisible para interactuar
+        self.canvas.create_rectangle(x2 + 5, y2 - 28, x2 + 32, y2 - 3, fill='', outline='', tags='btn_buscar')
+        self.canvas.tag_bind('btn_buscar', '<Button-1>', self.on_search_click)
+        self.canvas.tag_bind('btn_buscar', '<Enter>', lambda event: self.canvas.config(cursor="hand2"))
+        self.canvas.tag_bind('btn_buscar', '<Leave>', lambda event: self.canvas.config(cursor=""))
+        self.input_busqueda.bind('<Return>', self.on_search_click) #bindeo de la tecla Enter
 
     def draw_busqueda_sugerencias(self):
         x = CANVAS_WIDTH / 1.38
@@ -111,9 +118,16 @@ class DiscoveryView:
         self.canvas.create_oval(x + 10, y + 6, x + 44, y + 38, fill='black') #vinilo - border
         self.canvas.create_oval(x + 23, y + 18, x + 31, y + 26, fill='red') #vinilo - la parte roja
 
+    #callbacks - para llamar al controlador cuando se hace una busqueda
+    def set_callbacks(self, search_callback):
+        self.search_callback = search_callback
+
     def on_search_click(self, event=None):
         query = self.input_busqueda.get().strip()
-        print(f"Búsqueda solicitada: {query}")
+        if query and hasattr(self, 'search_callback'):
+            self.search_callback(query)
+        else:
+            print(f"Búsqueda solicitada (sin callback registrado): {query}")
 
 """ MAIN """
 
