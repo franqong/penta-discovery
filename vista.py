@@ -138,7 +138,7 @@ class DiscoveryView:
 
         #titulo encabezado para la seccion de letras
         self.canvas.create_text(x + 20, y + 25, text="LETRA", font=('Inter', 12, 'bold'), fill='#DFD0B8', anchor='w')
-        self.canvas.create_line(x + 20, y + 42, x + 80, y + 42, fill='#948979', width=2)
+        self.canvas.create_line(x + 20, y + 42, x + 73, y + 42, fill='#948979', width=2)
         
         #frame contenedor para scrollbar y text widget
         lyrics_frame = tk.Frame(self.root, bg='#393E46')
@@ -169,7 +169,7 @@ class DiscoveryView:
 
         #detalle de canción
         self.canvas.create_text(x + 20, y + 25, text="DETALLE DE CANCIÓN", font=('Inter', 12, 'bold'), fill='#DFD0B8', anchor='w')
-        self.canvas.create_line(x + 20, y + 42, x + 180, y + 42, fill='#948979', width=2)
+        self.canvas.create_line(x + 20, y + 42, x + 200, y + 42, fill='#948979', width=2)
         
         #coordenadas del vinilo grande
         self.large_vinyl_cx = x + 85
@@ -214,7 +214,7 @@ class DiscoveryView:
 
         #encabezado de recomendaciones
         self.canvas.create_text(x + 20, y + 25, text="RECOMENDACIONES", font=('Inter', 12, 'bold'), fill='#DFD0B8', anchor='w')
-        self.canvas.create_line(x + 20, y + 42, x + 160, y + 42, fill='#948979', width=2)
+        self.canvas.create_line(x + 20, y + 42, x + 187, y + 42, fill='#948979', width=2)
         
         #slots de 3 recomendaciones
         self.rec_items = []
